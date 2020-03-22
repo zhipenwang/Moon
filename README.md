@@ -25,6 +25,9 @@ ROOT  服务部署目录
 ├—--Index.php     业务代码
 ├—Config          配置目录
 ├—--Router.php    路由配置
+├—Services        基础服务层
+├—--Core.php      核心类
+├—--Apps.php      应用服务类
 ├─index.php       入口文件
 └─README.md       README文件
 ```
