@@ -17,3 +17,14 @@ test/yar_client
 test/yar_con_client
 提供了一个yar rpc client并行的示例
 ```
+
+### 项目分层
+```$xslt
+ROOT  服务部署目录
+├—Apps            应用目录
+├—--Index.php     业务代码
+├—Config          配置目录
+├—--Router.php    路由配置
+├─index.php       入口文件
+└─README.md       README文件
+```
