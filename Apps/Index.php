@@ -8,12 +8,9 @@
 
 namespace Apps;
 
-class Index {
+use Services\Apps;
 
-    public function __construct() {
-        $yar_server = new \Yar_Server($this);
-        $yar_server->handle();
-    }
+class Index extends Apps {
 
     /**
      * @return string

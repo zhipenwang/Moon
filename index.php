@@ -15,6 +15,5 @@ spl_autoload_register(function (string $name) {
     }
 });
 
-$script_url = $_SERVER['REQUEST_URI'];
-$handle = \Config\Router::$router[$script_url];
-new $handle['class'];
+$app = new \Services\Core();
+$app->run();
