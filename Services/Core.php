@@ -9,20 +9,39 @@
 namespace Services;
 
 use Config\HttpCode;
+use Config\Router;
 use Lib\Http;
 
 class Core {
 
     public function run() {
         $script_url = preg_replace("/\?.*$/", "", $_SERVER['REQUEST_URI']);
-        if (empty($script_url) || $script_url === '/' || !isset(\Config\Router::$router[$script_url])) {
+        if (empty($script_url) || $script_url === '/') {
             Http::httpResponse(HttpCode::API_CODE_NOT_FOUND, [
                 "code"  => HttpCode::API_CODE_NOT_FOUND,
                 "data"  => [],
             ]);
         }
 
-        $handle = \Config\Router::$router[$script_url];
-        new $handle['class'];
+        if (Request::getRpcHeader() === true) {
+            if (!isset(Router::$rpc_router[$script_url])) {
+                Http::httpResponse(HttpCode::API_CODE_NOT_FOUND, [
+                    "code"  => HttpCode::API_CODE_NOT_FOUND,
+                    "data"  => [],
+                ]);
+            }
+            $handle = Router::$rpc_router[$script_url];
+            new $handle['class'];
+        } else {
+            if (!isset(Router::$router[$script_url])) {
+                Http::httpResponse(HttpCode::API_CODE_NOT_FOUND, [
+                    "code"  => HttpCode::API_CODE_NOT_FOUND,
+                    "data"  => [],
+                ]);
+            }
+            $handle = Router::$router[$script_url];
+            $class = new $handle['class'];
+            call_user_func_array([$class, $handle['method']], []);
+        }
     }
 }

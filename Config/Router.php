@@ -10,9 +10,18 @@ namespace Config;
 
 class Router {
 
+    public static $rpc_router = [
+        "/index"    => [
+            "class" => \AppsRpc\Index::class,
+            "rpc"   => true,
+        ],
+    ];
+
     public static $router = [
         "/index"    => [
             "class" => \Apps\Index::class,
+            "method"=> "index",
+            "rpc"   => false,
         ],
     ];
 }

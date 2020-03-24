@@ -6,7 +6,7 @@
  * Time: 12:18
  */
 
-namespace Apps;
+namespace AppsRpc;
 
 
 use Config\HttpCode;
