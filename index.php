@@ -15,5 +15,6 @@ spl_autoload_register(function (string $name) {
     }
 });
 
-$app = new \Services\Core();
+
+$app = new \Services\Moon();
 $app->run();

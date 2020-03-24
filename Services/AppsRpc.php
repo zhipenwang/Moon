@@ -8,7 +8,7 @@
 
 namespace Services;
 
-class Apps {
+class AppsRpc {
 
     public function __construct() {
         $yar_server = new \Yar_Server($this);
