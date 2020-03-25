@@ -12,16 +12,29 @@ class Router {
 
     public static $rpc_router = [
         "/index"    => [
-            "class" => \AppsRpc\Index::class,
-            "rpc"   => true,
+            "V1"    => [
+                "class" => \AppsRpc\V1\Index::class,
+                "rpc"   => true,
+            ],
+            "V2"    => [
+                "class" => \AppsRpc\V2\Index::class,
+                "rpc"   => true,
+            ],
         ],
     ];
 
     public static $router = [
         "/index"    => [
-            "class" => \Apps\Index::class,
-            "method"=> "index",
-            "rpc"   => false,
+            "V1"    => [
+                "class" => \Apps\V1\Index::class,
+                "method"=> "index",
+                "rpc"   => false,
+            ],
+            "V2"    => [
+                "class" => \Apps\V2\Index::class,
+                "method"=> "index",
+                "rpc"   => false,
+            ],
         ],
     ];
 }

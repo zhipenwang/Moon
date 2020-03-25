@@ -30,7 +30,14 @@ class Core {
                     "data"  => [],
                 ]);
             }
-            $handle = Router::$rpc_router[$script_url];
+            $version = Request::getVersion();
+            if (!isset(Router::$rpc_router[$script_url][$version])) {
+                Http::httpResponse(HttpCode::API_CODE_NOT_FOUND, [
+                    "code"  => HttpCode::API_CODE_NOT_FOUND,
+                    "data"  => [],
+                ]);
+            }
+            $handle = Router::$rpc_router[$script_url][$version];
             new $handle['class'];
         } else {
             if (!isset(Router::$router[$script_url])) {
@@ -39,7 +46,14 @@ class Core {
                     "data"  => [],
                 ]);
             }
-            $handle = Router::$router[$script_url];
+            $version = Request::getVersion();
+            if (!isset(Router::$router[$script_url][$version])) {
+                Http::httpResponse(HttpCode::API_CODE_NOT_FOUND, [
+                    "code"  => HttpCode::API_CODE_NOT_FOUND,
+                    "data"  => [],
+                ]);
+            }
+            $handle = Router::$router[$script_url][$version];
             $class = new $handle['class'];
             call_user_func_array([$class, $handle['method']], []);
         }

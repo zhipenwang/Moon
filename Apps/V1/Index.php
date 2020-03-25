@@ -6,7 +6,7 @@
  * Time: 11:25
  */
 
-namespace Apps;
+namespace Apps\V1;
 
 use Config\HttpCode;
 use Lib\Http;
@@ -16,7 +16,7 @@ class Index {
     public function index() {
         Http::httpResponse(HttpCode::API_CODE_OK, [
             "code"  => HttpCode::API_CODE_OK,
-            "data"  => [1,2,3],
+            "data"  => ["V1"],
         ]);
     }
 }

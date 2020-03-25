@@ -6,7 +6,7 @@
  * Time: 12:18
  */
 
-namespace AppsRpc;
+namespace AppsRpc\V2;
 
 
 use Config\HttpCode;
@@ -21,7 +21,7 @@ class Index extends AppsRpc {
     public function index() :string {
         return Http::httpRpcResponse(HttpCode::API_CODE_OK, [
             "code"  => HttpCode::API_CODE_OK,
-            "data"  => "hello world",
+            "data"  => "hello world V2",
         ]);
     }
 
@@ -31,7 +31,7 @@ class Index extends AppsRpc {
     public function execute() :string {
         return Http::httpRpcResponse(HttpCode::API_CODE_OK, [
             "code"  => HttpCode::API_CODE_OK,
-            "data"  => "hello execute",
+            "data"  => "hello execute V2",
         ]);
     }
 }
