@@ -9,10 +9,9 @@
 namespace Services;
 
 use Config\HttpCode;
-use Config\Router;
 use Lib\Http;
 
-class Core {
+abstract class Core {
 
     public function run() {
         $script_url = preg_replace("/\?.*$/", "", $_SERVER['REQUEST_URI']);
@@ -24,38 +23,13 @@ class Core {
         }
 
         if (Request::getRpcHeader() === true) {
-            if (!isset(Router::$rpc_router[$script_url])) {
-                Http::httpResponse(HttpCode::API_CODE_NOT_FOUND, [
-                    "code"  => HttpCode::API_CODE_NOT_FOUND,
-                    "data"  => [],
-                ]);
-            }
-            $version = Request::getVersion();
-            if (!isset(Router::$rpc_router[$script_url][$version])) {
-                Http::httpResponse(HttpCode::API_CODE_NOT_FOUND, [
-                    "code"  => HttpCode::API_CODE_NOT_FOUND,
-                    "data"  => [],
-                ]);
-            }
-            $handle = Router::$rpc_router[$script_url][$version];
-            new $handle['class'];
+            $this->requestRpcDo($script_url);
         } else {
-            if (!isset(Router::$router[$script_url])) {
-                Http::httpResponse(HttpCode::API_CODE_NOT_FOUND, [
-                    "code"  => HttpCode::API_CODE_NOT_FOUND,
-                    "data"  => [],
-                ]);
-            }
-            $version = Request::getVersion();
-            if (!isset(Router::$router[$script_url][$version])) {
-                Http::httpResponse(HttpCode::API_CODE_NOT_FOUND, [
-                    "code"  => HttpCode::API_CODE_NOT_FOUND,
-                    "data"  => [],
-                ]);
-            }
-            $handle = Router::$router[$script_url][$version];
-            $class = new $handle['class'];
-            call_user_func_array([$class, $handle['method']], []);
+            $this->requestDo($script_url);
         }
     }
+
+    abstract public function requestDo(string $script_url);
+    abstract public function requestRpcDo(string $script_url);
+    abstract public function authentication();
 }

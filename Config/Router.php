@@ -26,14 +26,18 @@ class Router {
     public static $router = [
         "/index"    => [
             "V1"    => [
-                "class" => \Apps\V1\Index::class,
-                "method"=> "index",
-                "rpc"   => false,
+                "class"     => \Apps\V1\Index::class,
+                "access"    => ["GET"],
+                "auth"      => ["GET"],
+                "action"    => "index",
+                "rpc"       => false,
             ],
             "V2"    => [
-                "class" => \Apps\V2\Index::class,
-                "method"=> "index",
-                "rpc"   => false,
+                "class"     => \Apps\V2\Index::class,
+                "access"    => ["GET"],
+                "auth"      => ["GET"],
+                "action"    => "index",
+                "rpc"       => false,
             ],
         ],
     ];

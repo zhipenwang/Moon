@@ -10,8 +10,9 @@ namespace Apps\V2;
 
 use Config\HttpCode;
 use Lib\Http;
+use Services\Apps;
 
-class Index {
+class Index extends Apps {
 
     public function index() {
         Http::httpResponse(HttpCode::API_CODE_OK, [
