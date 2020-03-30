@@ -10,6 +10,5 @@ namespace Services;
 
 interface AppsInterface {
     public function init();
-    public function execute();
     public function done();
 }

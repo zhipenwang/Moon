@@ -14,10 +14,14 @@ class Router {
         "/index"    => [
             "V1"    => [
                 "class" => \AppsRpc\V1\Index::class,
+                "access"    => ["POST"],
+                "auth"      => ["POST"],
                 "rpc"   => true,
             ],
             "V2"    => [
                 "class" => \AppsRpc\V2\Index::class,
+                "access"    => ["POST"],
+                "auth"      => ["POST"],
                 "rpc"   => true,
             ],
         ],

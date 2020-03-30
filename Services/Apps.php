@@ -18,10 +18,6 @@ class Apps implements AppsInterface {
         // TODO: Implement init() method.
     }
 
-    public function execute() {
-        // TODO: Implement execute() method.
-    }
-
     public function done() {
         // TODO: Implement done() method.
     }

@@ -31,6 +31,19 @@ class Moon extends Core {
             ]);
         }
         $handle = Router::$rpc_router[$script_url][$version];
+
+        // 校验http method
+        $http_method = Request::getMethod();
+        if (!in_array($http_method, $handle['access'])) {
+            echo HttpCode::API_CODE_METHOD_NOT_ALLOWED;exit();
+        }
+
+        // 鉴权
+        if (in_array($http_method, $handle['auth'])) {
+            // TODO: 鉴权处理方法
+            $this->authentication();
+        }
+
         new $handle['class'];
     }
 
